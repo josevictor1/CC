@@ -20,8 +20,8 @@ int main(){
 				printf("Negativo");
 			}
 		}
-
-		printf("Deseja finalixar? (S/N) ");
+		getchar();
+		printf("Deseja finalizar? (S/N) ");
 		scanf("%c", &opc);
 		if(opc == 'S'){
 			programa = 0;

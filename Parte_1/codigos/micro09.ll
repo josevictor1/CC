@@ -26,74 +26,77 @@ define i32 @main() #0 {
 ; <label>:11:                                     ; preds = %0
   %12 = load float, float* %2, align 4
   %13 = fcmp olt float %12, 3.000000e+01
-  br i1 %13, label %14, label %19
+  br i1 %13, label %14, label %22
 
 ; <label>:14:                                     ; preds = %11, %0
   %15 = load float, float* %2, align 4
-  %16 = load float, float* %2, align 4
-  %17 = fmul float 0.000000e+00, %16
-  %18 = fadd float %15, %17
-  store float %18, float* %4, align 4
-  br label %49
+  %16 = fpext float %15 to double
+  %17 = load float, float* %2, align 4
+  %18 = fpext float %17 to double
+  %19 = fmul double 1.000000e-01, %18
+  %20 = fadd double %16, %19
+  %21 = fptrunc double %20 to float
+  store float %21, float* %4, align 4
+  br label %52
 
-; <label>:19:                                     ; preds = %11
-  %20 = load float, float* %3, align 4
-  %21 = fcmp oge float %20, 5.000000e+02
-  br i1 %21, label %22, label %25
-
-; <label>:22:                                     ; preds = %19
+; <label>:22:                                     ; preds = %11
   %23 = load float, float* %3, align 4
-  %24 = fcmp olt float %23, 1.200000e+03
-  br i1 %24, label %31, label %25
+  %24 = fcmp oge float %23, 5.000000e+02
+  br i1 %24, label %25, label %28
 
-; <label>:25:                                     ; preds = %22, %19
-  %26 = load float, float* %2, align 4
-  %27 = fcmp oge float %26, 3.000000e+01
-  br i1 %27, label %28, label %36
+; <label>:25:                                     ; preds = %22
+  %26 = load float, float* %3, align 4
+  %27 = fcmp olt float %26, 1.200000e+03
+  br i1 %27, label %34, label %28
 
-; <label>:28:                                     ; preds = %25
+; <label>:28:                                     ; preds = %25, %22
   %29 = load float, float* %2, align 4
-  %30 = fcmp olt float %29, 8.000000e+01
-  br i1 %30, label %31, label %36
+  %30 = fcmp oge float %29, 3.000000e+01
+  br i1 %30, label %31, label %39
 
-; <label>:31:                                     ; preds = %28, %22
+; <label>:31:                                     ; preds = %28
   %32 = load float, float* %2, align 4
-  %33 = load float, float* %2, align 4
-  %34 = fmul float 0.000000e+00, %33
-  %35 = fadd float %32, %34
-  store float %35, float* %4, align 4
-  br label %48
+  %33 = fcmp olt float %32, 8.000000e+01
+  br i1 %33, label %34, label %39
 
-; <label>:36:                                     ; preds = %28, %25
-  %37 = load float, float* %3, align 4
-  %38 = fcmp oge float %37, 1.200000e+03
-  br i1 %38, label %42, label %39
+; <label>:34:                                     ; preds = %31, %25
+  %35 = load float, float* %2, align 4
+  %36 = load float, float* %2, align 4
+  %37 = fmul float 0.000000e+00, %36
+  %38 = fadd float %35, %37
+  store float %38, float* %4, align 4
+  br label %51
 
-; <label>:39:                                     ; preds = %36
-  %40 = load float, float* %2, align 4
-  %41 = fcmp oge float %40, 8.000000e+01
-  br i1 %41, label %42, label %47
+; <label>:39:                                     ; preds = %31, %28
+  %40 = load float, float* %3, align 4
+  %41 = fcmp oge float %40, 1.200000e+03
+  br i1 %41, label %45, label %42
 
-; <label>:42:                                     ; preds = %39, %36
+; <label>:42:                                     ; preds = %39
   %43 = load float, float* %2, align 4
-  %44 = load float, float* %2, align 4
-  %45 = fmul float 0.000000e+00, %44
-  %46 = fsub float %43, %45
-  store float %46, float* %4, align 4
-  br label %47
+  %44 = fcmp oge float %43, 8.000000e+01
+  br i1 %44, label %45, label %50
 
-; <label>:47:                                     ; preds = %42, %39
-  br label %48
+; <label>:45:                                     ; preds = %42, %39
+  %46 = load float, float* %2, align 4
+  %47 = load float, float* %2, align 4
+  %48 = fmul float 0.000000e+00, %47
+  %49 = fsub float %46, %48
+  store float %49, float* %4, align 4
+  br label %50
 
-; <label>:48:                                     ; preds = %47, %31
-  br label %49
+; <label>:50:                                     ; preds = %45, %42
+  br label %51
 
-; <label>:49:                                     ; preds = %48, %14
-  %50 = load float, float* %4, align 4
-  %51 = fpext float %50 to double
-  %52 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([19 x i8], [19 x i8]* @.str.3, i32 0, i32 0), double %51)
-  %53 = load i32, i32* %1, align 4
-  ret i32 %53
+; <label>:51:                                     ; preds = %50, %34
+  br label %52
+
+; <label>:52:                                     ; preds = %51, %14
+  %53 = load float, float* %4, align 4
+  %54 = fpext float %53 to double
+  %55 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([19 x i8], [19 x i8]* @.str.3, i32 0, i32 0), double %54)
+  %56 = load i32, i32* %1, align 4
+  ret i32 %56
 }
 
 declare i32 @printf(i8*, ...) #1

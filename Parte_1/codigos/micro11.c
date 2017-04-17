@@ -4,15 +4,18 @@ int main(){
 	int numero;
 	int x;
 
-	printf("Digite um número: ");
+	printf("Digite um número: \n");
 	scanf("%d", &numero);
 	int verifica(int n);
 	x = verifica(numero);
-	if(x == 0){
-		printf("Zero");
+	if(x == 1){
+		printf("Número positivo\n");
+	}	
+	else if(x == 0){
+		printf("Zero\n");
 	}
 	else{
-		printf("Número negativo");
+		printf("Número negativo\n");
 	}
 
 }

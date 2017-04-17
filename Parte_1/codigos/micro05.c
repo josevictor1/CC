@@ -3,12 +3,13 @@
 int main(){
 
 		char nome[40],sexo;
-		int x, h, m;
+		int x, h=0, m=0;
 
 		for(x = 1; x < 5; x++){
-			printf("Digite o nome: ");
+			printf("Digite o nome: \n");
 			scanf("%s",nome);
-			printf("H - Homem ou M - Mulher: ");
+			printf("H - Homem ou M - Mulher: \n");
+			getchar();
 			scanf("%c",&sexo);
 
 			if (sexo == 'H'){
@@ -18,13 +19,13 @@ int main(){
 				m = m + 1;
 			}
 			else {
-				printf("Sexo só pode ser H ou M!");
+				printf("Sexo só pode ser H ou M!\n");
 			}
 
 		}
 
-		printf("Foram inseridos %d Homens",h);
-		printf("Foram inseridos %d Mulheres",m);
+		printf("Foram inseridos %d Homens\n",h);
+		printf("Foram inseridos %d Mulheres\n",m);
 
 
 }

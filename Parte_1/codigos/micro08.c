@@ -5,14 +5,14 @@ int main(){
 
 	numero = 1;
 	while(numero != 0){
-		printf("Digite um número: ");
+		printf("Digite um número: \n");
 		scanf("%d", &numero);
 
 		if(numero > 10){
-			printf(" O número %d é maior que 10", numero);
+			printf(" O número %d é maior que 10\n", numero);
 		}
 		else {
-			printf("O número %d é maior que 10", numero);
+			printf("O número %d é menor que 10\n", numero);
 		}
 	}
 }

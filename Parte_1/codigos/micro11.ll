@@ -3,10 +3,11 @@ source_filename = "micro11.c"
 target datalayout = "e-m:e-i64:64-f80:128-n8:16:32:64-S128"
 target triple = "x86_64-pc-linux-gnu"
 
-@.str = private unnamed_addr constant [20 x i8] c"Digite um n\C3\BAmero: \00", align 1
+@.str = private unnamed_addr constant [21 x i8] c"Digite um n\C3\BAmero: \0A\00", align 1
 @.str.1 = private unnamed_addr constant [3 x i8] c"%d\00", align 1
-@.str.2 = private unnamed_addr constant [5 x i8] c"Zero\00", align 1
-@.str.3 = private unnamed_addr constant [17 x i8] c"N\C3\BAmero negativo\00", align 1
+@.str.2 = private unnamed_addr constant [18 x i8] c"N\C3\BAmero positivo\0A\00", align 1
+@.str.3 = private unnamed_addr constant [6 x i8] c"Zero\0A\00", align 1
+@.str.4 = private unnamed_addr constant [18 x i8] c"N\C3\BAmero negativo\0A\00", align 1
 
 ; Function Attrs: noinline nounwind uwtable
 define i32 @main() #0 {
@@ -14,26 +15,38 @@ define i32 @main() #0 {
   %2 = alloca i32, align 4
   %3 = alloca i32, align 4
   store i32 0, i32* %1, align 4
-  %4 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([20 x i8], [20 x i8]* @.str, i32 0, i32 0))
+  %4 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([21 x i8], [21 x i8]* @.str, i32 0, i32 0))
   %5 = call i32 (i8*, ...) @__isoc99_scanf(i8* getelementptr inbounds ([3 x i8], [3 x i8]* @.str.1, i32 0, i32 0), i32* %2)
   %6 = load i32, i32* %2, align 4
   %7 = call i32 @verifica(i32 %6)
   store i32 %7, i32* %3, align 4
   %8 = load i32, i32* %3, align 4
-  %9 = icmp eq i32 %8, 0
+  %9 = icmp eq i32 %8, 1
   br i1 %9, label %10, label %12
 
 ; <label>:10:                                     ; preds = %0
-  %11 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([5 x i8], [5 x i8]* @.str.2, i32 0, i32 0))
-  br label %14
+  %11 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([18 x i8], [18 x i8]* @.str.2, i32 0, i32 0))
+  br label %20
 
 ; <label>:12:                                     ; preds = %0
-  %13 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([17 x i8], [17 x i8]* @.str.3, i32 0, i32 0))
-  br label %14
+  %13 = load i32, i32* %3, align 4
+  %14 = icmp eq i32 %13, 0
+  br i1 %14, label %15, label %17
 
-; <label>:14:                                     ; preds = %12, %10
-  %15 = load i32, i32* %1, align 4
-  ret i32 %15
+; <label>:15:                                     ; preds = %12
+  %16 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @.str.3, i32 0, i32 0))
+  br label %19
+
+; <label>:17:                                     ; preds = %12
+  %18 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([18 x i8], [18 x i8]* @.str.4, i32 0, i32 0))
+  br label %19
+
+; <label>:19:                                     ; preds = %17, %15
+  br label %20
+
+; <label>:20:                                     ; preds = %19, %10
+  %21 = load i32, i32* %1, align 4
+  ret i32 %21
 }
 
 declare i32 @printf(i8*, ...) #1

@@ -14,6 +14,7 @@ define i32 @main() #0 {
   %3 = alloca i32, align 4
   %4 = alloca i32, align 4
   store i32 0, i32* %1, align 4
+  store i32 0, i32* %4, align 4
   store i32 1, i32* %2, align 4
   br label %5
 
